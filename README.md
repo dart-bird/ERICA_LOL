@@ -1,1 +1,2 @@
-# stunning-carnival
+# ERICA_LOL
+2019057383_유진웅
