@@ -1,6 +1,8 @@
 package ClassSet.Content;
 
-import ClassSet.ReadWrite.RW;
+import java.io.File;
+
+import ClassSet.ReadWriter.RW;
 
 public class TeamContent extends RW{
     private String TeamList = "";
@@ -10,7 +12,6 @@ public class TeamContent extends RW{
         super(file);
         this.file = file;
         TeamList = "";
-
     }
 
     public void loadUserList() {
