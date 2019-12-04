@@ -77,11 +77,27 @@ public class UserContent extends RW {
     }
 
     public String getUserData(String key){
-        if(key == "id") s1 = userdata.get("id").toString();
-        if(key == "pw") s1 = userdata.get("pw").toString();
-        if(key == "exp") s1 = userdata.get("exp").toString();
-        if(key == "gold") s1 = userdata.get("gold").toString();
-        if(key == "cards") s1 = userdata.get("cards").toString();
+        switch (key) {
+            case "id":
+                s1 = userdata.get("id").toString();
+                break;
+        
+            case "pw":
+                s1 = userdata.get("pw").toString();
+                break;
+
+            case "exp":
+                s1 = userdata.get("exp").toString();
+                break;
+            
+            case "gold":
+                s1 = userdata.get("gold").toString();
+                break;
+            
+            case "cards":
+                s1 = userdata.get("cards").toString();
+                break;
+        }
         return s1;
     }
 }
