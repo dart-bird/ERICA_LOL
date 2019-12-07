@@ -16,8 +16,21 @@ public class Main{
         user1.loadDB();
         System.out.println(user1.getUserData("gold"));
         Mframe frame = new Mframe();
-        frame.menu();
-        frame.mypage();
+        while(true){
+            int cmd=0;
+            frame.menu();
+            switch (cmd) {
+                case 1:
+                    frame.mypage();
+                    break;
+                case 2:
+                    frame.shop();
+                    break;
+                case 3:
+                    frame.game();
+                    break;
+            }
+        }
         /* for(int i =0; i<85; i++){
             System.out.println("");
             double randomValue = Math.random();
