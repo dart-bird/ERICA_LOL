@@ -3,6 +3,7 @@ import ClassSet.ReadWriter.RW;
 
 import java.io.File;
 import java.util.Random;
+import java.util.Scanner;
 
 import ClassSet.Content.UserContent;
 import ClassSet.MFrame.Mframe;
@@ -17,18 +18,29 @@ public class Main{
         System.out.println(user1.getUserData("gold"));
         Mframe frame = new Mframe();
         while(true){
-            int cmd=0;
+            int cmd;
             frame.menu();
+            Scanner scanner = new Scanner(System.in);
+            cmd = scanner.nextInt();
             switch (cmd) {
                 case 1:
-                    frame.mypage();
+                    while(frame.getCmd()!=1) frame.mypage();
                     break;
                 case 2:
-                    frame.shop();
+                    while(frame.getCmd()!=1) frame.shop();
                     break;
                 case 3:
-                    frame.game();
+                    while(frame.getCmd()!=1) {
+                        frame.game();
+                        if(frame.getCmd() == 2) {
+                            while(frame.getCmd()!=1) frame.ingame();
+                        }
+
+                    }
                     break;
+                case 4:
+                    System.out.println("안녕히가십쇼. 감독님.");
+                    System.exit(0);
             }
         }
         /* for(int i =0; i<85; i++){
