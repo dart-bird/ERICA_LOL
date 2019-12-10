@@ -25,6 +25,7 @@ public class RW implements IFRW{
 
         } catch (FileNotFoundException e ) {
             // TODO: handle exception
+            System.out.println("Check if right dir: " + file);
         }
     }
     
