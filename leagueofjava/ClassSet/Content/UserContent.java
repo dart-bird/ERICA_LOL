@@ -20,18 +20,16 @@ public class UserContent extends RW {
         UserList = "";
         tmpStr = "";
         dataIndex = 0;
+        loadUserList();
+        loadDB();
     }
 
-    public void loadUserList() {
+    private void loadUserList() {
         loadContent(file);
         UserList = getContent();
     }
 
-    public String getUserList() {
-        return UserList;
-    }
-
-    public void loadDB() {
+    private void loadDB() {
         for(int i=0; i<UserList.length(); i++){
             if(UserList.charAt(i) == ','){
                 switch(dataIndex){
@@ -74,6 +72,10 @@ public class UserContent extends RW {
             }
             tmpStr += UserList.charAt(i);
         }
+    }
+    
+    public String getUserList() {
+        return UserList;
     }
 
     public String getUserData(String key){
