@@ -1,11 +1,5 @@
-import Interface.IFRW;
-import ClassSet.ReadWriter.RW;
-
-import java.io.File;
-import java.util.Random;
 import java.util.Scanner;
 
-import ClassSet.Content.UserContent;
 import ClassSet.MFrame.Mframe;
 public class Main{
     public static void main(String[] args){
@@ -40,15 +34,16 @@ public class Main{
                     break;
                 case 4:
                     System.out.println("안녕히가십쇼. 감독님.");
+                    scanner.close();
                     System.exit(0);
             }
+        
         }
         /* for(int i =0; i<85; i++){
             System.out.println("");
             double randomValue = Math.random();
             int intValue = (int)(randomValue * 50) + 30;
-            double randomValue2 = Math.random();
-            int intValue2 = (int)(randomValue2 * 50) + 30;
+            double randomValue2 = Math.random(); 50) + 30;
             double randomValue3 = Math.random();
             int intValue3 = (int)(randomValue3 * 50) + 30;
             double randomValue4 = Math.random();
