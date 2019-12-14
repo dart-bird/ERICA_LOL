@@ -1,6 +1,7 @@
 package ClassSet.MFrame;
 
 import ClassSet.Content.UserContent;
+import ClassSet.Content.PlayerContent;
 
 import java.io.File;
 import java.util.Scanner;
@@ -8,7 +9,9 @@ import java.util.Scanner;
 public class Mframe {
     public int cmd; //input int
     File userFile = new File("../leagueofjava/content/data/userdata.gdata"); //userdata dir
-    UserContent user1 = new UserContent(userFile); //init usercontent
+    File deckFile = new File("../leagueofjava/content/data/data_deck.gdata"); //userdata dir
+    File playerdataFile = new File("../leagueofjava/content/data/playerdata.gdata");
+    UserContent user1 = new UserContent(userFile, deckFile, playerdataFile); //init usercontent
     Scanner scanner = new Scanner(System.in); //to input int
     public Mframe() {
         cmd = 0;
@@ -18,6 +21,12 @@ public class Mframe {
         System.out.print("ID:" + user1.getUserData("id")); //get id 
         System.out.print(" GOLD:" + user1.getUserData("gold")); //get gold 
         System.out.println(" EXP:" + user1.getUserData("exp") + "\n"); //get exp
+    }
+    private void showMyplayerList(){
+        System.out.println(">>>>선발<<<<");
+        System.out.println(user1.getUserDeck("INGAME"));
+        System.out.println(">>>>후보<<<<");
+        System.out.println(user1.getUserDeck("OUTGAME")); 
     }
     public void menu(){
         cmd = 0;
@@ -35,6 +44,7 @@ public class Mframe {
         System.out.println("내 선수단 관리");
         System.out.println("*********************************************");
         showImformation();
+        showMyplayerList();
         System.out.println("1. 메뉴");
         System.out.print("숫자를 입력하세요:");
         cmd = scanner.nextInt();
