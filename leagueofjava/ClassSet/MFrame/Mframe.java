@@ -24,9 +24,13 @@ public class Mframe {
     }
     private void showMyplayerList(){
         System.out.println(">>>>선발<<<<");
-        System.out.println(user1.getUserDeck("INGAME"));
+        System.out.println("\n<< 탑   >> \n" + user1.getUserDeck("INGAME","top"));
+        System.out.println("\n<< 미드 >> \n" + user1.getUserDeck("INGAME","mid"));
+        System.out.println("\n<< 원딜 >> \n" + user1.getUserDeck("INGAME","dealer"));
+        System.out.println("\n<< 서폿 >> \n" + user1.getUserDeck("INGAME","supporter"));
+        System.out.println("\n<< 정글 >> \n" + user1.getUserDeck("INGAME","jungle") + "\n");
         System.out.println(">>>>후보<<<<");
-        System.out.println(user1.getUserDeck("OUTGAME")); 
+        System.out.println(user1.getUserDeck("OUTGAME","other")); 
     }
     public void menu(){
         cmd = 0;
@@ -48,6 +52,7 @@ public class Mframe {
         System.out.println("1. 메뉴");
         System.out.print("숫자를 입력하세요:");
         cmd = scanner.nextInt();
+        
     }
     public void shop(){
         System.out.print("\033[H\033[2J"); //clear console / ubuntu
@@ -60,17 +65,19 @@ public class Mframe {
         System.out.println("1. 메뉴");
         System.out.print("숫자를 입력하세요:");
         cmd = scanner.nextInt();
+        
     }
     public void game(){
         System.out.print("\033[H\033[2J"); //clear console / ubuntu
         System.out.println("*********************************************");
-        System.out.println("게임 메뉴");
+        System.out.println("게임을 시작하시겠습니까?");
         System.out.println("*********************************************");
         showImformation();
         System.out.print("1. 메뉴 ");
         System.out.print("2. 게임 시작\n");
         System.out.print("숫자를 입력하세요:");
         cmd = scanner.nextInt();
+        
     }
     public void ingame(){
         System.out.print("\033[H\033[2J"); //clear console / ubuntu
@@ -81,6 +88,7 @@ public class Mframe {
         System.out.println("1. 메뉴로 ");
         System.out.print("숫자를 입력하세요:");
         cmd = scanner.nextInt();
+        
     }
     public int getCmd(){
         return cmd;
