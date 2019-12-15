@@ -10,6 +10,18 @@ public class Main{
         //System.out.println(user1.getUserList());
         //user1.loadDB();
         //System.out.println(user1.getUserData("gold"));
+        // for(int i =0; i<85; i++){
+        //     System.out.println("");
+        //     double randomValue = Math.random();
+        //     int intValue = (int)(randomValue * 50) + 30;
+        //     double randomValue2 = Math.random();
+        //     int intValue2 = (int)(randomValue2 * 50) + 30;
+        //     double randomValue3 = Math.random();
+        //     int intValue3 = (int)(randomValue3 * 50) + 30;
+        //     double randomValue4 = Math.random();
+        //     int intValue4 = (int)(randomValue4 * 50) + 30;
+        //     System.out.print("/"+intValue+"/"+intValue2+"/"+intValue3+"/"+intValue4);
+        // }  //data random
         Mframe frame = new Mframe();
         while(true){
             int cmd;
@@ -39,16 +51,6 @@ public class Main{
             }
         
         }
-        /* for(int i =0; i<85; i++){
-            System.out.println("");
-            double randomValue = Math.random();
-            int intValue = (int)(randomValue * 50) + 30;
-            double randomValue2 = Math.random(); 50) + 30;
-            double randomValue3 = Math.random();
-            int intValue3 = (int)(randomValue3 * 50) + 30;
-            double randomValue4 = Math.random();
-            int intValue4 = (int)(randomValue4 * 50) + 30;
-            System.out.print("/"+intValue+"/"+intValue2+"/"+intValue3+"/"+intValue4);
-        } */ //data random
+         
     }
 }
