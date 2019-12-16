@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 import ClassSet.MFrame.Mframe;
 public class Main{
-    public static void main(String[] args){
+    public static void main(String[] args) throws InterruptedException {
 
         //File userFile = new File("../leagueofjava/content/data/userdata.gdata");
         //UserContent user1 = new UserContent(userFile);
@@ -33,7 +33,12 @@ public class Main{
                     while(frame.getCmd()!=1) frame.mypage();
                     break;
                 case 2:
-                    while(frame.getCmd()!=1) frame.shop();
+                    while(frame.getCmd()!=1) {
+                        frame.shop();
+                        if(frame.getCmd() == 2) {
+                            while(frame.getCmd()!=1) frame.shop_result();
+                        }
+                    }
                     break;
                 case 3:
                     while(frame.getCmd()!=1) {
