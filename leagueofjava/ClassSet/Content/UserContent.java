@@ -103,7 +103,7 @@ public class UserContent extends PlayerContent {
     public String getUserData(String key){
         return userdata.get(key).toString();
     }
-    private String playerInformation(){
+    public String playerInformation(){
         return "[이름] " + list.get(0).toString()+
         " [닉네임] " + list.get(1).toString()+ 
         " [팀] " + list.get(2).toString()+ 
