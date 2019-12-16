@@ -1,7 +1,7 @@
 package ClassSet.MFrame;
 
 import ClassSet.Content.UserContent;
-import ClassSet.Content.PlayerContent;
+import ClassSet.Content.*;
 
 import java.io.File;
 import java.util.Scanner;
@@ -12,6 +12,7 @@ public class Mframe {
     File deckFile = new File("../leagueofjava/content/data/data_deck.gdata"); //userdata dir
     File playerdataFile = new File("../leagueofjava/content/data/playerdata.gdata");
     UserContent user1 = new UserContent(userFile, deckFile, playerdataFile); //init usercontent
+    ShopContent shop = new ShopContent(playerdataFile);
     Scanner scanner = new Scanner(System.in); //to input int
     public Mframe() {
         cmd = 0;
@@ -57,15 +58,23 @@ public class Mframe {
     public void shop(){
         System.out.print("\033[H\033[2J"); //clear console / ubuntu
         System.out.println("*********************************************");
-        System.out.println("이적시장");
+        System.out.println("이적시장 (영입이라 읽고 뽑기라 한다 ^^77)");
         System.out.println("*********************************************");
         showImformation();
-        System.out.print("Player"); //get id
-        System.out.println("");
-        System.out.println("1. 메뉴");
+        System.out.println("1. 메뉴 2. 선수영입");
         System.out.print("숫자를 입력하세요:");
         cmd = scanner.nextInt();
         
+    }  public void shop_result() throws InterruptedException {
+        System.out.print("\033[H\033[2J"); //clear console / ubuntu
+        System.out.println("*********************************************");
+        for(int i=0; i<4; i++){ System.out.print("두"); Thread.sleep(1000); System.out.print("근");}
+        System.out.println("\n*********************************************");
+        showImformation();
+        System.out.println(shop.getShopData());
+        System.out.println("1. 메뉴 2. 선수영입");
+        System.out.print("숫자를 입력하세요:");
+        cmd = scanner.nextInt();
     }
     public void game(){
         System.out.print("\033[H\033[2J"); //clear console / ubuntu
