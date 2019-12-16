@@ -39,6 +39,10 @@ public class PlayerContent implements IFRW{
         return playerdata.get(key);
     }
 
+    public Integer getPlayerdataCnt() {
+        return playerdata.size();
+    }
+
     @Override
     public String getContent() {
         // TODO Auto-generated method stub
