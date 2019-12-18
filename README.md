@@ -1,7 +1,7 @@
 ## ERICA_LOL
 2019057383_유진웅
 
-### HOW TO  
+# HOW TO  
 
 ## ★ required java version 1.8.0
 
