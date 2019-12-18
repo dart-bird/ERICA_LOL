@@ -1,19 +1,26 @@
 package ClassSet.Content;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
+
+import ClassSet.ReadWriter.Writer;
 
 public class ShopContent extends PlayerContent {
     ArrayList<String> list = new ArrayList<String>(); //정보 정리에 필요한 리스트
     private HashMap <Integer, ArrayList<String>> shopdata = new HashMap <Integer, ArrayList<String>>(); //선수 정보 정리 사전
     private String shopdataStr;
-    public ShopContent(File file) {
-        super(file);
-        loadContent(file);
+    private int chooseRandomVal;
+    File file2;
+    public ShopContent(File playerdataFile, File wdeckFile) {
+        super(playerdataFile);
+        loadContent(playerdataFile);
+        this.file2 = wdeckFile;
         shopdataStr = "";
         loadShopData();
+        chooseRandomVal = 0;
         // TODO Auto-generated constructor stub
     }
     private void loadShopData() {
@@ -40,10 +47,14 @@ public class ShopContent extends PlayerContent {
     public String getShopData() {
         
         Random random = new Random();
-        int intValue = random.nextInt(shopdata.size());
-        list = shopdata.get(intValue);
+        chooseRandomVal = random.nextInt(shopdata.size());
+        list = shopdata.get(chooseRandomVal);
         shopdataStr = playerInformation() + "\n";
-
+        writeGetShopData(file2, Integer.toString(chooseRandomVal), true);
         return shopdataStr;
+    }
+    private void writeGetShopData(File file, String inContentString, boolean append) { // write은 민감하기 때문에 숨김
+        Writer wUserData = new Writer(file);
+        wUserData.writeContent(file, "," + inContentString, append); // 형식에 맞춰서 파일작성함.
     }
 }
