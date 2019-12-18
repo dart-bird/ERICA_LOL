@@ -1,8 +1,10 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 import ClassSet.MFrame.Mframe;
+
 public class Main{
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, IOException{
 
         //File userFile = new File("../leagueofjava/content/data/userdata.gdata");
         //UserContent user1 = new UserContent(userFile);
@@ -30,7 +32,12 @@ public class Main{
             cmd = scanner.nextInt();
             switch (cmd) {
                 case 1:
-                    while(frame.getCmd()!=1) frame.mypage();
+                    while(frame.getCmd()!=1) {
+                        frame.mypage();
+                        if(frame.getCmd() == 2) {
+                            frame.mypage_2();
+                        }
+                    }
                     break;
                 case 2:
                     while(frame.getCmd()!=1) {
