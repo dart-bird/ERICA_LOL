@@ -5,8 +5,8 @@ import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import Interface.IFRW;
-public class PlayerContent implements IFRW{
+import Interface.IFReader;
+public class PlayerContent implements IFReader{
     private String PlayerList = "";
     private HashMap <Integer, String> playerdata = new HashMap <Integer, String>();
     File file;
@@ -17,18 +17,16 @@ public class PlayerContent implements IFRW{
     }
     @Override
     public void loadContent(File file){ //load player data in HashMap.
-        int cnt =0;
         try {
+            int cnt =0;
             Scanner scan = new Scanner(file);
-            while (scan.hasNextLine()){
-                playerdata.put(cnt,scan.nextLine());
+            while (scan.hasNextLine()) {
+                playerdata.put(cnt, scan.nextLine());
                 cnt++;
             }
             scan.close();
-
-        } catch (FileNotFoundException e ) {
-            // TODO: handle exception
-            System.out.println("Check if right dir: " + file);
+        } catch (FileNotFoundException e) {
+            System.out.println("Check file!");
         }
     }
     public String getPlayerList() { //review parsing result
@@ -47,11 +45,5 @@ public class PlayerContent implements IFRW{
     public String getContent() {
         // TODO Auto-generated method stub
         return null;
-    }
-
-    @Override
-    public void writeContent(File file, String inContentString) {
-        // TODO Auto-generated method stub
-
     }
 }
