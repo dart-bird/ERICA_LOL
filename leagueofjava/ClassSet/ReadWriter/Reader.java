@@ -8,18 +8,17 @@ import Interface.IFReader;
 
 public class Reader implements IFReader{
     File file;
-    FileWriter wfile;
+    
     private String ContentList = "";
 
-    public Reader(File file2) {
-        this.file = file2;
+    public Reader(File file) {
         ContentList = "";
     }
     
     @Override
-    public void loadContent(File file2){
+    public void loadContent(File file){
         try {
-            Scanner scan = new Scanner(file2);
+            Scanner scan = new Scanner(file);
             while (scan.hasNextLine()) {
                 ContentList += scan.nextLine();
                 ContentList += "\n";
