@@ -88,48 +88,55 @@ public class UserContent extends PlayerContent {
 
     private void pushUserData() {
         try {
-            for(int i=0; i<UserData.length(); i++){
-                if(UserData.charAt(i) == ','){
-                    switch(dataIndex){
-                        case 0: // to recognize id
-                            userdata.put("id",tmpStr);
-                            dataIndex++; //다음 pw를 인식 시키기 위해 1증가.
-                            tmpStr = "";
-                            break;
-                        case 1: // to recognize pw
-                            tmpStr = tmpStr.replace(",", ""); // erase ',' char
-                            userdata.put("pw",tmpStr);
-                            dataIndex++; //다음 pw를 인식 시키기 위해 1증가.
-                            tmpStr = "";
-                            break;
-                        case 2: // to recognize exp
-                            tmpStr = tmpStr.replace(",", ""); // erase ',' char
-                            userdata.put("exp",tmpStr);
-                            dataIndex++; //다음 exp를 인식 시키기 위해 1증가.
-                            tmpStr = "";
-                            break;
-                        case 3: // to recognize gold
-                            tmpStr = tmpStr.replace(",", ""); // erase ',' char
-                            userdata.put("gold",tmpStr);
-                            dataIndex++; //다음 gold를 인식 시키기 위해 1증가.
-                            tmpStr = "";
-                            break;
-                        case 4: // to recognize team
-                            tmpStr = tmpStr.replace(",", ""); // erase ',' char
-                            userdata.put("team",tmpStr);
-                            dataIndex++; //다음 team을 인식 시키기 위해 1증가.
-                            tmpStr = "";
-                            break;
-                        case 5: // to recognize deck
-                            tmpStr = tmpStr.replace(",", ""); // erase ',' char
-                            userdata.put("deck",tmpStr);
-                            dataIndex++; //다음 deck을 인식 시키기 위해 1증가.
-                            tmpStr = "";
-                            break;
-                    }
-                }
-                tmpStr += UserData.charAt(i);
-            }
+            dataOfkey ="";
+            String[] data = UserData.split(",");
+            data = reformData(data);
+            userdata.put("id", data[0]);
+            userdata.put("pw", data[1]);
+            userdata.put("exp", data[2]);
+            userdata.put("gold", data[3]);
+            // for(int i=0; i<UserData.length(); i++){
+            //     if(UserData.charAt(i) == ','){
+            //         switch(dataIndex){
+            //             case 0: // to recognize id
+            //                 userdata.put("id",tmpStr);
+            //                 dataIndex++; //다음 pw를 인식 시키기 위해 1증가.
+            //                 tmpStr = "";
+            //                 break;
+            //             case 1: // to recognize pw
+            //                 tmpStr = tmpStr.replace(",", ""); // erase ',' char
+            //                 userdata.put("pw",tmpStr);
+            //                 dataIndex++; //다음 pw를 인식 시키기 위해 1증가.
+            //                 tmpStr = "";
+            //                 break;
+            //             case 2: // to recognize exp
+            //                 tmpStr = tmpStr.replace(",", ""); // erase ',' char
+            //                 userdata.put("exp",tmpStr);
+            //                 dataIndex++; //다음 exp를 인식 시키기 위해 1증가.
+            //                 tmpStr = "";
+            //                 break;
+            //             case 3: // to recognize gold
+            //                 tmpStr = tmpStr.replace(",", ""); // erase ',' char
+            //                 userdata.put("gold",tmpStr);
+            //                 dataIndex++; //다음 gold를 인식 시키기 위해 1증가.
+            //                 tmpStr = "";
+            //                 break;
+            //             case 4: // to recognize team
+            //                 tmpStr = tmpStr.replace(",", ""); // erase ',' char
+            //                 userdata.put("team",tmpStr);
+            //                 dataIndex++; //다음 team을 인식 시키기 위해 1증가.
+            //                 tmpStr = "";
+            //                 break;
+            //             case 5: // to recognize deck
+            //                 tmpStr = tmpStr.replace(",", ""); // erase ',' char
+            //                 userdata.put("deck",tmpStr);
+            //                 dataIndex++; //다음 deck을 인식 시키기 위해 1증가.
+            //                 tmpStr = "";
+            //                 break;
+            //         }
+            //     }
+            //     tmpStr += UserData.charAt(i);
+            // }
         } catch (Exception e) {
             System.out.println("사용자 정보 없음");
         }
