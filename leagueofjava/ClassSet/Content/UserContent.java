@@ -95,48 +95,6 @@ public class UserContent extends PlayerContent {
             userdata.put("pw", data[1]);
             userdata.put("exp", data[2]);
             userdata.put("gold", data[3]);
-            // for(int i=0; i<UserData.length(); i++){
-            //     if(UserData.charAt(i) == ','){
-            //         switch(dataIndex){
-            //             case 0: // to recognize id
-            //                 userdata.put("id",tmpStr);
-            //                 dataIndex++; //다음 pw를 인식 시키기 위해 1증가.
-            //                 tmpStr = "";
-            //                 break;
-            //             case 1: // to recognize pw
-            //                 tmpStr = tmpStr.replace(",", ""); // erase ',' char
-            //                 userdata.put("pw",tmpStr);
-            //                 dataIndex++; //다음 pw를 인식 시키기 위해 1증가.
-            //                 tmpStr = "";
-            //                 break;
-            //             case 2: // to recognize exp
-            //                 tmpStr = tmpStr.replace(",", ""); // erase ',' char
-            //                 userdata.put("exp",tmpStr);
-            //                 dataIndex++; //다음 exp를 인식 시키기 위해 1증가.
-            //                 tmpStr = "";
-            //                 break;
-            //             case 3: // to recognize gold
-            //                 tmpStr = tmpStr.replace(",", ""); // erase ',' char
-            //                 userdata.put("gold",tmpStr);
-            //                 dataIndex++; //다음 gold를 인식 시키기 위해 1증가.
-            //                 tmpStr = "";
-            //                 break;
-            //             case 4: // to recognize team
-            //                 tmpStr = tmpStr.replace(",", ""); // erase ',' char
-            //                 userdata.put("team",tmpStr);
-            //                 dataIndex++; //다음 team을 인식 시키기 위해 1증가.
-            //                 tmpStr = "";
-            //                 break;
-            //             case 5: // to recognize deck
-            //                 tmpStr = tmpStr.replace(",", ""); // erase ',' char
-            //                 userdata.put("deck",tmpStr);
-            //                 dataIndex++; //다음 deck을 인식 시키기 위해 1증가.
-            //                 tmpStr = "";
-            //                 break;
-            //         }
-            //     }
-            //     tmpStr += UserData.charAt(i);
-            // }
         } catch (Exception e) {
             System.out.println("사용자 정보 없음");
         }
@@ -178,15 +136,6 @@ public class UserContent extends PlayerContent {
 
     public String getUserData(String key){
         return userdata.get(key).toString();
-    }
-    public String playerInformation(){
-        return "[이름] " + list.get(0).toString()+
-        " [닉네임] " + list.get(1).toString()+ 
-        " [팀] " + list.get(2).toString()+ 
-        " [스킬샷] " + list.get(3).toString()+
-        " [로밍능력] " + list.get(4).toString()+
-        " [CS] " + list.get(5).toString()+
-        " [정글몹] " + list.get(6).toString();
     }
     public boolean chkUserDeckName(String name){
         boolean bool = false;
@@ -250,23 +199,23 @@ public class UserContent extends PlayerContent {
             switch(position){
                 case "top":
                     list = userdeckClassfic_ingame.get(0);
-                    return playerInformation();
+                    return getPlayerInformation(list);
                 case "mid":
                     list = userdeckClassfic_ingame.get(1);
-                    return playerInformation();
+                    return getPlayerInformation(list);
                 case "dealer":
                     list = userdeckClassfic_ingame.get(2);
-                    return playerInformation();
+                    return getPlayerInformation(list);
                 case "supporter":
                     list = userdeckClassfic_ingame.get(3);
-                    return playerInformation();
+                    return getPlayerInformation(list);
                 case "jungle":
                     list = userdeckClassfic_ingame.get(4);
-                    return playerInformation();
+                    return getPlayerInformation(list);
                 case "other":
                     for(int i=0; i<userdeckClassfic_outgame.size(); i++){
                         list = userdeckClassfic_outgame.get(i);
-                        dataOfkey += playerInformation() + "\n\n";
+                        dataOfkey += getPlayerInformation(list) + "\n\n";
                     }
                     return dataOfkey;
             }
