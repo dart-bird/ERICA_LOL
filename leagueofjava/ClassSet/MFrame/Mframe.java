@@ -28,8 +28,9 @@ public class Mframe {
     private void showImformation(){
         UserContent user = reloadData();
         System.out.print("ID:" + user.getUserData("id")); //get id 
-        System.out.print(" GOLD:" + user.getUserData("gold")); //get gold 
-        System.out.println(" EXP:" + user.getUserData("exp") + "\n"); //get exp
+        System.out.print(" EXP:" + user.getUserData("exp")); //get gold 
+        System.out.println(" GOLD:" + user.getUserData("gold") + "\n"); //get exp
+       
     }
     private void showMyplayerList(){
         UserContent user = reloadData();
@@ -120,16 +121,22 @@ public class Mframe {
         cmd = scanner.nextInt();
         
     }  public void shop_result() throws InterruptedException, IOException {
-        
-        File wdeckFile = new File("../leagueofjava/content/data/data_deck.gdata");
-        ShopContent shop = new ShopContent(playerdataFile, wdeckFile);
-
         System.out.print("\033[H\033[2J"); //clear console / ubuntu
+        File wdeckFile = new File("../leagueofjava/content/data/data_deck.gdata");
+        ShopContent shop = new ShopContent(playerdataFile, wdeckFile, userFile);
+        UserContent user = reloadData();
+        boolean result = shop.purchaseProcessing(500);
+        user = reloadData();
         System.out.println("*********************************************");
-        for(int i=0; i<8; i++){ Thread.sleep(50); System.out.print("두"); Thread.sleep(50); System.out.print("군");}
-        System.out.println("\n*********************************************");
+        System.out.println("이적시장 (영입이라 읽고 뽑기라고 말한다 ^^77)");
+        System.out.println("*********************************************");
         showImformation();
-        System.out.println(shop.getShopData());
+        if(result == true){
+            System.out.println("*********************************************");
+            for(int i=0; i<8; i++){ Thread.sleep(50); System.out.print("두"); Thread.sleep(50); System.out.print("군");}
+            System.out.println("\n*********************************************");
+            shop.getShopData();
+        }else System.out.println("골드가 부족합니다.\n");
         System.out.println("1. 메뉴 2. 선수영입");
         System.out.print("숫자를 입력하세요:");
         cmd = scanner.nextInt();
