@@ -2,6 +2,7 @@ package ClassSet.Content;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -39,6 +40,16 @@ public class PlayerContent implements IFReader{
 
     public Integer getPlayerdataCnt() {
         return playerdata.size();
+    }
+    
+    public String getPlayerInformation(ArrayList<String> list){
+        return "[이름] " + list.get(0).toString()+
+        " [닉네임] " + list.get(1).toString()+ 
+        " [팀] " + list.get(2).toString()+ 
+        " [스킬샷] " + list.get(3).toString()+
+        " [로밍능력] " + list.get(4).toString()+
+        " [CS] " + list.get(5).toString()+
+        " [정글몹] " + list.get(6).toString();
     }
 
     @Override
