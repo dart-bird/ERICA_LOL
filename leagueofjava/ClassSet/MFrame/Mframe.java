@@ -135,7 +135,7 @@ public class Mframe {
             System.out.println("*********************************************");
             for(int i=0; i<8; i++){ Thread.sleep(50); System.out.print("두"); Thread.sleep(50); System.out.print("군");}
             System.out.println("\n*********************************************");
-            shop.getShopData();
+            System.out.println(shop.getShopData());
         }else System.out.println("골드가 부족합니다.\n");
         System.out.println("1. 메뉴 2. 선수영입");
         System.out.print("숫자를 입력하세요:");
