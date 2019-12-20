@@ -48,15 +48,24 @@ public class BotContent extends PlayerContent {
             for (int j = 0; j < 7; j++) { // save splited bot player data, index 0 ~ 6
                 list.add(splitbotPlayer[j]);
             }
+            botDeckClassfic.put(i,list);
         }
     }
-
-    public String getBotContent() {
-        String botContentStr = "";
+    public String getBotContentAverage(int averageTarget) {
+        int sum = 0;
         for (int i = 0; i < botDeckClassfic.size(); i++) {
-            list = botDeckClassfic.get(i); // repeat input list index of i to current list
-            botContentStr += getPlayerInformation(list) + "\n";  // get from PlayerInformation function by input current list
+            list = botDeckClassfic.get(i); // select botPlayer index
+            sum += Integer.parseInt(list.get(averageTarget));
         }
-        return botContentStr;
+        return Integer.toString(sum/botDeckClassfic.size()); // String return about averageTarget
+    }
+    public String getBotContent(int i) {
+        try {
+            list = botDeckClassfic.get(i); // repeat input list index of i to current list
+            return getPlayerInformation(list) + "\n";
+        } catch (Exception e) {
+            System.out.println(list);
+            return "현재 봇 리스트가 존재하지 않습니다.";
+        }
     }
 }
