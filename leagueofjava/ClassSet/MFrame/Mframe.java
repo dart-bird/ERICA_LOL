@@ -2,6 +2,7 @@ package ClassSet.MFrame;
 
 import ClassSet.Content.UserContent;
 import ClassSet.Content.ShopContent;
+import ClassSet.Content.GameContent;
 import ClassSet.Content.PlayerContent;
 
 import java.io.File;
@@ -11,28 +12,28 @@ import java.util.Scanner;
 
 public class Mframe {
     public int cmd; //input int
-    File userFile = new File("../leagueofjava/content/data/userdata.gdata"); //userdata dir
-    File deckFile = new File("../leagueofjava/content/data/data_deck.gdata"); //userdeck dir
+    File userdataFile = new File("../leagueofjava/content/data/userdata.gdata"); //userdata dir
+    File deckdataFile = new File("../leagueofjava/content/data/data_deck.gdata"); //userdeck dir
     File playerdataFile = new File("../leagueofjava/content/data/playerdata.gdata"); //playerdata dir
-    
+    File botdataFile = new File("../leagueofjava/content/data/botdata.gdata"); //botdata dir
     
     Scanner scanner = new Scanner(System.in); //to input int
     public Mframe() {
         cmd = 0;
         //System.out.println(user.getUserData("gold"));
     }
-    private UserContent reloadData(){
-        UserContent user = new UserContent(userFile, deckFile, playerdataFile); //init usercontent
+    private UserContent reloadData() throws IOException {
+        UserContent user = new UserContent(userdataFile, deckdataFile, playerdataFile); //init usercontent
         return user;
     }
-    private void showImformation(){
+    private void showImformation() throws IOException {
         UserContent user = reloadData();
         System.out.print("ID:" + user.getUserData("id")); //get id 
         System.out.print(" EXP:" + user.getUserData("exp")); //get gold 
         System.out.println(" GOLD:" + user.getUserData("gold") + "\n"); //get exp
        
     }
-    private void showMyplayerList(){
+    private void showMyplayerList() throws IOException {
         UserContent user = reloadData();
         System.out.println(">>>>선발<<<<");
         System.out.println("\n<< 탑   >> \n" + user.getUserDeck("INGAME","top"));
@@ -43,7 +44,7 @@ public class Mframe {
         System.out.println(">>>>후보<<<<");
         System.out.println(user.getUserDeck("OUTGAME","other")); 
     }
-    public void menu(){
+    public void menu() throws IOException {
         cmd = 0;
         System.out.print("\033[H\033[2J"); //clear console / ubuntu
         System.out.println("*********************************************");
@@ -53,7 +54,7 @@ public class Mframe {
         System.out.println("1. 내 선수단 관리 2. 이적시장 3. 게임 4. 종료");
         System.out.print("숫자를 입력하세요:");
     }
-    public void mypage(){
+    public void mypage() throws IOException {
         //System.out.print("\033[H\033[2J"); //clear console / ubuntu
         System.out.println("*********************************************");
         System.out.println("내 선수단 관리");
@@ -63,7 +64,7 @@ public class Mframe {
         System.out.println("1. 메뉴 2. 선수 교체하기");
         System.out.print("숫자를 입력하세요:");
         cmd = scanner.nextInt();
-    } public void mypage_2(){
+    } public void mypage_2() throws IOException {
         int input = 0;
         UserContent user = reloadData();
         //System.out.print("\033[H\033[2J"); //clear console / ubuntu
@@ -102,14 +103,14 @@ public class Mframe {
             int ingameData = user.getUserDeckIndex("INGAME", userChStr); //선발 -> 후보 될 어떤 라인에 있는 선수, playerdata상의 index 가져옴
             int outgameData = user.getUserDeckIndex("OUTGAME", userChStr2); //후보 -> 선발 될 선수, playerdata상의 index 가져옴
             user.setUserDeckByName(ingameData, outgameData);
-            user.writeUserContent(deckFile, user.getUserDeckList(), false);
+            user.writeUserContent(deckdataFile, user.getUserDeckList(), false);
         } else {
             System.out.println("일치하는 후보 선수가 없습니다.");
         }
 
         
     }
-    public void shop(){
+    public void shop() throws IOException {
         
         System.out.print("\033[H\033[2J"); //clear console / ubuntu
         System.out.println("*********************************************");
@@ -122,8 +123,8 @@ public class Mframe {
         
     }  public void shop_result() throws InterruptedException, IOException {
         System.out.print("\033[H\033[2J"); //clear console / ubuntu
-        File wdeckFile = new File("../leagueofjava/content/data/data_deck.gdata");
-        ShopContent shop = new ShopContent(playerdataFile, wdeckFile, userFile);
+        File wdeckdataFile = new File("../leagueofjava/content/data/data_deck.gdata");
+        ShopContent shop = new ShopContent(playerdataFile, wdeckdataFile, userdataFile);
         UserContent user = reloadData();
         boolean result = shop.purchaseProcessing(500);
         user = reloadData();
@@ -141,7 +142,7 @@ public class Mframe {
         System.out.print("숫자를 입력하세요:");
         cmd = scanner.nextInt();
     }
-    public void game(){
+    public void game() throws IOException {
         System.out.print("\033[H\033[2J"); //clear console / ubuntu
         System.out.println("*********************************************");
         System.out.println("게임을 시작하시겠습니까?");
@@ -153,12 +154,15 @@ public class Mframe {
         cmd = scanner.nextInt();
         
     }
-    public void ingame(){
+    public void ingame() throws IOException {
+        GameContent gameContent = new GameContent(playerdataFile);
         System.out.print("\033[H\033[2J"); //clear console / ubuntu
         System.out.println("*********************************************");
         System.out.println("소환사의 협곡에 오신 것을 환영합니다.");
         System.out.println("*********************************************");
         showImformation();
+        System.out.println(gameContent.getBotPlayerStat(0, 1) + gameContent.getBotPlayerStat(0, 3));
+        System.out.println(gameContent.getUserPlayerStat(0, 1) + gameContent.getUserPlayerStat(0, 3));
         System.out.println("1. 메뉴로 ");
         System.out.print("숫자를 입력하세요:");
         cmd = scanner.nextInt();
