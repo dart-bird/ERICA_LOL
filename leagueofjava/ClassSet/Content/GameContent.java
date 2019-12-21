@@ -132,14 +132,31 @@ public class GameContent extends PlayerContent {
         boolean statResult = false;
         double statrnd = Math.random();
         double tmp = Double.parseDouble(getUserTeamStat(key, stat));
-        if(statrnd > tmp*0.1) statResult = true; 
+        //System.out.println(tmp);
+        if(statrnd < tmp*0.01) statResult = true;
+        //System.out.println("현재 랜덤 값: " + statrnd + "현재 선수 값:" + (tmp*0.1));
         return statResult;
     }
     public boolean getRandByBotPlayerStat (int key, int stat){
         boolean statResult = false;
         double statrnd = Math.random();
         double tmp = Double.parseDouble(getBotTeamStat(key, stat));
-        if(statrnd > tmp*0.1) statResult = true; 
+        if(statrnd > tmp*0.01) statResult = true; 
         return statResult;
+    }
+    public int getRandByDrackKind () {
+        double randVal = Math.random();
+        int drackRandom = (int)(randVal*(4-1+1)+1);
+        return drackRandom;
+    }
+    public int getRandByStatJ() {
+        double randVal = Math.random();
+        int StatRandom = (int)(randVal*(6-3+1)+3);
+        return StatRandom;
+    }
+    public int getRandByStatL() {
+        double randVal = Math.random();
+        int StatRandom = (int)(randVal*(4-3+1)+3);
+        return StatRandom;
     }
 }
