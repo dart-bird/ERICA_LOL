@@ -172,7 +172,9 @@ public class UserContent extends PlayerContent {
         }
         return data;
     }
-
+    public HashMap <Integer,ArrayList<String>> getUserPlayerHashMap() {
+        return userdeckClassfic_ingame;
+    }
     public Integer getUserDeckIndex(String key, String position) {
         String index = "";
         tmpStr = userdeck.get(key);
