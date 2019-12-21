@@ -127,4 +127,19 @@ public class GameContent extends PlayerContent {
         return tmp/5;
     }
     // TODO: 게임에 참가하는 선수들 리스트를 보여주고 거기에 따른 팀의 평균치를 게임 시작 전에 보여줘야함
+    // User && Bot player random by Stat
+    public boolean getRandByUserPlayerStat (int key, int stat){
+        boolean statResult = false;
+        double statrnd = Math.random();
+        double tmp = Double.parseDouble(getUserTeamStat(key, stat));
+        if(statrnd > tmp*0.1) statResult = true; 
+        return statResult;
+    }
+    public boolean getRandByBotPlayerStat (int key, int stat){
+        boolean statResult = false;
+        double statrnd = Math.random();
+        double tmp = Double.parseDouble(getBotTeamStat(key, stat));
+        if(statrnd > tmp*0.1) statResult = true; 
+        return statResult;
+    }
 }
