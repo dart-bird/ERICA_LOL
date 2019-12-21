@@ -142,12 +142,48 @@ public class Mframe {
         System.out.print("숫자를 입력하세요:");
         cmd = scanner.nextInt();
     }
+    public void showUserTeam () throws IOException {
+        GameContent gameContent = new GameContent(playerdataFile);
+        System.out.println(" 스킬샷 평균: " + gameContent.getAverageUserTeamStat(3)
+                         + " 로밍 평균: " + gameContent.getAverageUserTeamStat(4)
+                         + " CS: " + gameContent.getAverageUserTeamStat(5)
+                         + " 정글시도 평균: " + gameContent.getAverageUserTeamStat(6));
+        System.out.println("<< 탑 >>");
+        System.out.println(gameContent.getUserTeam(0) + "\n");
+        System.out.println("<< 미드 >>");
+        System.out.println(gameContent.getUserTeam(1) + "\n");
+        System.out.println("<< 원딜 >>");
+        System.out.println(gameContent.getUserTeam(2) + "\n");
+        System.out.println("<< 서폿 >>");
+        System.out.println(gameContent.getUserTeam(3) + "\n");
+        System.out.println("<< 정글 >>");
+        System.out.println(gameContent.getUserTeam(4) + "\n");
+    }
+    public void showBotTeam () throws IOException {
+        GameContent gameContent = new GameContent(playerdataFile);
+        System.out.println(" 스킬샷 평균: " + gameContent.getAverageBotTeamStat(3)
+                         + " 로밍 평균: " + gameContent.getAverageBotTeamStat(4)
+                         + " CS: " + gameContent.getAverageBotTeamStat(5)
+                         + " 정글시도 평균: " + gameContent.getAverageBotTeamStat(6));
+        System.out.println("<< 탑 >>");
+        System.out.println(gameContent.getBotTeam(0) + "\n");
+        System.out.println("<< 미드 >>");
+        System.out.println(gameContent.getBotTeam(1) + "\n");
+        System.out.println("<< 원딜 >>");
+        System.out.println(gameContent.getBotTeam(2) + "\n");
+        System.out.println("<< 서폿 >>");
+        System.out.println(gameContent.getBotTeam(3) + "\n");
+        System.out.println("<< 정글 >>");
+        System.out.println(gameContent.getBotTeam(4) + "\n");
+    }
     public void game() throws IOException {
-        System.out.print("\033[H\033[2J"); //clear console / ubuntu
+        //System.out.print("\033[H\033[2J"); //clear console / ubuntu
         System.out.println("*********************************************");
         System.out.println("게임을 시작하시겠습니까?");
         System.out.println("*********************************************");
         showImformation();
+        System.out.println("감독님 팀\n"); showUserTeam();
+        System.out.println("상대 팀\n"); showBotTeam();
         System.out.print("1. 메뉴 ");
         System.out.print("2. 게임 시작\n");
         System.out.print("숫자를 입력하세요:");
@@ -156,13 +192,11 @@ public class Mframe {
     }
     public void ingame() throws IOException {
         GameContent gameContent = new GameContent(playerdataFile);
-        System.out.print("\033[H\033[2J"); //clear console / ubuntu
+        //System.out.print("\033[H\033[2J"); //clear console / ubuntu
         System.out.println("*********************************************");
         System.out.println("소환사의 협곡에 오신 것을 환영합니다.");
         System.out.println("*********************************************");
         showImformation();
-        System.out.println(gameContent.getBotPlayerStat(0, 1) + gameContent.getBotPlayerStat(0, 3));
-        System.out.println(gameContent.getUserPlayerStat(0, 1) + gameContent.getUserPlayerStat(0, 3));
         System.out.println("1. 메뉴로 ");
         System.out.print("숫자를 입력하세요:");
         cmd = scanner.nextInt();
