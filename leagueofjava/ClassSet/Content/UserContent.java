@@ -2,44 +2,52 @@ package ClassSet.Content;
 
 import ClassSet.ReadWriter.Reader;
 import ClassSet.ReadWriter.Writer;
-
+import java.util.ArrayList;
 import java.io.File;
+import java.io.IOException;
 //import ClassSet.Content.PlayerContent;
 import java.util.*;
 
 public class UserContent extends PlayerContent {
     private String UserData = "";
     private String UserDeck = "";
-    ArrayList<String> list = new ArrayList<String>(); //정보 정리에 필요한 리스트
-    private HashMap <String, String> userdata = new HashMap <String, String>(); //사용자 정보 정리 사전
-    private HashMap <String, String> userdeck = new HashMap <String, String>(); //사용자 덱 선발, 후보 정리 사전
-    private HashMap <Integer, ArrayList<String>> userdeckClassfic_ingame = new HashMap <Integer, ArrayList<String>>(); //선발된 선수 정보 정리 사전
-    private HashMap <Integer, ArrayList<String>> userdeckClassfic_outgame = new HashMap <Integer, ArrayList<String>>(); //후보선수 정보 정리 사전
+    ArrayList<String> list = new ArrayList<String>(); // 정보 정리에 필요한 리스트
+    private HashMap<String, String> userdata = new HashMap<String, String>(); // 사용자 정보 정리 사전
+    private HashMap<String, String> userdeck = new HashMap<String, String>(); // 사용자 덱 선발, 후보 정리 사전
+    private HashMap<Integer, ArrayList<String>> userdeckClassfic_ingame = new HashMap<Integer, ArrayList<String>>(); // 선발된
+                                                                                                                     // 선수
+                                                                                                                     // 정보
+                                                                                                                     // 정리
+                                                                                                                     // 사전
+    private HashMap<Integer, ArrayList<String>> userdeckClassfic_outgame = new HashMap<Integer, ArrayList<String>>(); // 후보선수
+                                                                                                                      // 정보
+                                                                                                                      // 정리
+                                                                                                                      // 사전
     private String tmpStr = "";
     private int dataIndex = 0;
     private String dataOfkey = "";
 
-    public UserContent(File file, File file2, File file3) {
+    public UserContent(File file, File file2, File file3) throws IOException {
         super(file);
-        UserData = ""; UserDeck = "";
+        UserData = "";
+        UserDeck = "";
         tmpStr = "";
         dataIndex = 0;
-        loadContent(file3); //in PlayerContent
+        loadContent(file3); // in PlayerContent
         loadUserData(file);
         pushUserData();
         loadUserDeck(file2);
         pushUserDeck("INGAME");
         pushUserDeck("OUTGAME");
     }
-    
 
-    private void loadUserData(File file) {
+    private void loadUserData(File file) throws IOException {
         Reader rUserData = new Reader(file);
         rUserData.loadContent(file);
         UserData = rUserData.getContent();
     }
 
-    private void loadUserDeck(File file2) {
+    private void loadUserDeck(File file2) throws IOException {
         Reader rUserDeck = new Reader(file2);
         rUserDeck.loadContent(file2);
         UserDeck = rUserDeck.getContent();
@@ -85,7 +93,14 @@ public class UserContent extends PlayerContent {
         Writer wUserContent = new Writer(file);
         wUserContent.writeContent(file, Content, append);
     }
+    public String getUserPlayerStat(int key, int statIndex){
+        list = userdeckClassfic_ingame.get(key);
+        return list.get(statIndex);
+    }
 
+    public HashMap <Integer, ArrayList<String>> getHashMapUserPlayer(){
+        return userdeckClassfic_ingame;
+    }
     private void pushUserData() {
         try {
             dataOfkey ="";
