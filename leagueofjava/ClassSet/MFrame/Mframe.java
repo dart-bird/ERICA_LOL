@@ -8,6 +8,8 @@ import ClassSet.Content.PlayerContent;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Mframe {
@@ -190,16 +192,97 @@ public class Mframe {
         cmd = scanner.nextInt();
         
     }
-    public void ingame() throws IOException {
+    public void narationPlayer (int playerLine) throws IOException {
+        GameContent gameContent = new GameContent(playerdataFile);
+        switch (playerLine) {
+            case 0:
+                System.out.print("탑 라인인 " + gameContent.getUserTeamStat(0, 0) + "선수가 ");
+                break;
+            case 1:
+                System.out.print("미드 라인인 " + gameContent.getUserTeamStat(1, 0) + "선수가 ");
+                break;
+            case 2:
+                System.out.print("원딜 라인인 " + gameContent.getUserTeamStat(2, 0) + "선수가 ");
+                break;
+            case 3:
+                System.out.print("서폿 라인인 " + gameContent.getUserTeamStat(3, 0) + "선수가 ");
+                break;
+            case 4:
+                System.out.print("정글 라인인 " + gameContent.getUserTeamStat(4, 0) + "선수가 ");
+                break;
+            
+            default:
+                break;
+        }
+    }
+    public void ingame() throws IOException, InterruptedException {
         GameContent gameContent = new GameContent(playerdataFile);
         //System.out.print("\033[H\033[2J"); //clear console / ubuntu
         System.out.println("*********************************************");
         System.out.println("소환사의 협곡에 오신 것을 환영합니다.");
         System.out.println("*********************************************");
         showImformation();
-        System.out.println("1. 메뉴로 ");
-        System.out.print("숫자를 입력하세요:");
-        cmd = scanner.nextInt();
+        int line = 0; int jungleTime = 0; int jungleMob = 0;
+        HashMap<Integer, ArrayList<Double>> userStat = new HashMap<Integer, ArrayList<Double>>();
+        HashMap<Integer, ArrayList<Double>> botStat = new HashMap<Integer, ArrayList<Double>>();
+        // this hashmap change while ingame did not effect playerdata.
+        ArrayList<Double> doubleList = new ArrayList<>();
+        while (true) {
+            Thread.sleep(3000);
+            System.out.println("현재라인:" + line);
+            if (line == 5) line = 0; 
+            boolean userPlayerResult = gameContent.getRandByUserPlayerStat(line, 3);
+            boolean botPlayerResult = gameContent.getRandByBotPlayerStat(line, 3);
+            if (userPlayerResult && !botPlayerResult) {
+                System.out.println("감독팀 공격 이벤트!");
+                switch(line) {
+                    case 0:
+                        System.out.println("탑에서 감독님의 팀 ");
+                        break;
+                    case 1:
+                        System.out.println("미드에서 감독님의 팀 ");
+                        break;
+                    case 2:
+                        System.out.println("봇에서 감독님의 팀 ");
+                        break;
+                    case 3:
+                        System.out.println("봇에서 감독님의 팀 ");
+                        break;
+                    case 4:
+                        System.out.println("정글에서 감독님의 팀 ");
+                        line = 0;
+                        break;
+                }
+            } else if (!userPlayerResult && botPlayerResult) {
+                System.out.println("상대팀 공격 이벤트!");
+                switch(line) {
+                    case 0:
+                        System.out.println("탑에서 감독님의 팀 ");
+                        break;
+                    case 1:
+                        System.out.println("미드에서 감독님의 팀 ");
+                        break;
+                    case 2:
+                        System.out.println("봇에서 감독님의 팀 ");
+                        break;
+                    case 3:
+                        System.out.println("봇에서 감독님의 팀 ");
+                        break;
+                    case 4:
+                        System.out.println("정글에서 감독님의 팀 ");
+                        line = 0;
+                        break;
+                }
+            } else {
+                System.out.println("아무 일도 일어나지 않음. 대치!");
+            }
+            line++;
+
+        }
+        // TODO 현재 나레이션 구성하고 break해야함
+        // System.out.println("1. 메뉴로 ");
+        // System.out.print("숫자를 입력하세요:");
+        // cmd = scanner.nextInt();
         
     }
     public int getCmd(){
