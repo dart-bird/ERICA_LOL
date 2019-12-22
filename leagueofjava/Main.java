@@ -5,63 +5,46 @@ import ClassSet.MFrame.Mframe;
 
 public class Main{
     public static void main(String[] args) throws InterruptedException, IOException{
-
-        //File userFile = new File("../leagueofjava/content/data/userdata.gdata");
-        //UserContent user1 = new UserContent(userFile);
-        //user1.loadUserList();
-        //System.out.println(user1.getUserList());
-        //user1.loadDB();
-        //System.out.println(user1.getUserData("gold"));
-        // for(int i =0; i<85; i++){
-        //     System.out.println("");
-        //     double randomValue = Math.random();
-        //     int intValue = (int)(randomValue * 50) + 30;
-        //     double randomValue2 = Math.random();
-        //     int intValue2 = (int)(randomValue2 * 50) + 30;
-        //     double randomValue3 = Math.random();
-        //     int intValue3 = (int)(randomValue3 * 50) + 30;
-        //     double randomValue4 = Math.random();
-        //     int intValue4 = (int)(randomValue4 * 50) + 30;
-        //     System.out.print("/"+intValue+"/"+intValue2+"/"+intValue3+"/"+intValue4);
-        // }  //data random
         Mframe frame = new Mframe();
+        String cmd;
         while(true){
-            int cmd;
-            frame.menu();
-            Scanner scanner = new Scanner(System.in);
-            cmd = scanner.nextInt();
-            switch (cmd) {
-                case 1:
-                    while(frame.getCmd()!=1) {
-                        frame.mypage();
-                        if(frame.getCmd() == 2) {
-                            frame.mypage_2();
+                frame.menu();
+                Scanner scanner = new Scanner(System.in);
+                cmd = scanner.next();
+                switch (cmd) {
+                    case "1":
+                        while(!frame.getCmd().equals("1")) {
+                            frame.mypage();
+                            if(frame.getCmd().equals("2")) {
+                                frame.mypage_2();
+                            }
                         }
-                    }
-                    break;
-                case 2:
-                    while(frame.getCmd()!=1) {
-                        frame.shop();
-                        if(frame.getCmd() == 2) {
-                            while(frame.getCmd()!=1) frame.shop_result();
+                        break;
+                    case "2":
+                        while(!frame.getCmd().equals("1")) {
+                            frame.shop();
+                            if(frame.getCmd().equals("2")) {
+                                while(!frame.getCmd().equals("1")) frame.shop_result();
+                            }
                         }
-                    }
-                    break;
-                case 3:
-                    while(frame.getCmd()!=1) {
-                        frame.game();
-                        if(frame.getCmd() == 2) {
-                            while(frame.getCmd()!=1) frame.ingame();
-                        }
+                        break;
+                    case "3":
+                        while(!frame.getCmd().equals("1")) {
+                            frame.game();
+                            if(frame.getCmd().equals("2")) {
+                                while(!frame.getCmd().equals("1")) frame.ingame();
+                            }
 
-                    }
-                    break;
-                case 4:
-                    System.out.println("안녕히가십쇼. 감독님.");
-                    scanner.close();
-                    System.exit(0);
-            }
-        
+                        }
+                        break;
+                    case "4":
+                        System.out.println("안녕히가십쇼. 감독님.");
+                        scanner.close();
+                        System.exit(0);
+                    default:
+                        continue;
+                        
+                }
         }
          
     }
