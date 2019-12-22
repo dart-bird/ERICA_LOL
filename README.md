@@ -1,9 +1,14 @@
 ## ERICA_LOL
 2019057383_유진웅
 
-# HOW TO  
+# Install JAVA
 
-## ★ required java version 1.8.0
+1. `sudo apt-get update`
+2. `sudo apt-get install default-jdk`
+
+# HOW TO
+
+## ★ required java version 11.0.5
 
 1. `git clone https://github.com/krumaska/ERICA_LOL`  
 2. `cd ERICA_LOL/leagueofjava`  
