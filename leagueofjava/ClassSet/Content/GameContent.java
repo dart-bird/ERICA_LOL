@@ -1,13 +1,10 @@
 package ClassSet.Content;
-
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.lang.reflect.Array;
+import java.util.Random;
 
 import ClassSet.Content.UserContent;
 import ClassSet.ReadWriter.Reader;
@@ -126,7 +123,6 @@ public class GameContent extends PlayerContent {
         }
         return tmp/5;
     }
-    // TODO: 게임에 참가하는 선수들 리스트를 보여주고 거기에 따른 팀의 평균치를 게임 시작 전에 보여줘야함
     // User && Bot player random by Stat
     public boolean getRandByUserPlayerStat (int key, int stat){
         boolean statResult = false;
@@ -145,18 +141,30 @@ public class GameContent extends PlayerContent {
         return statResult;
     }
     public int getRandByDrackKind () {
-        double randVal = Math.random();
-        int drackRandom = (int)(randVal*(4-1+1)+1);
+        Random randVal = new Random();
+        int drackRandom = randVal.nextInt(4)+1;
         return drackRandom;
     }
     public int getRandByStatJ() {
-        double randVal = Math.random();
-        int StatRandom = (int)(randVal*(6-3+1)+3);
+        Random randVal = new Random();
+        int StatRandom = randVal.nextInt(4)+3;
         return StatRandom;
     }
     public int getRandByStatL() {
-        double randVal = Math.random();
-        int StatRandom = (int)(randVal*(4-3+1)+3);
+        Random randVal = new Random();
+        int StatRandom = randVal.nextInt(2)+3;
         return StatRandom;
+    }
+    public boolean getRandByEndgameStart() {
+        boolean randEndGame = false;
+        Random randVal = new Random();
+        int rand = randVal.nextInt(3);
+        if (rand == 1 || rand == 2) randEndGame = true;
+        return randEndGame;
+    }
+    public int getRandByPlayerLine() {
+        Random randVal = new Random();
+        int LineRandom = randVal.nextInt(6)+1;
+        return LineRandom;
     }
 }
